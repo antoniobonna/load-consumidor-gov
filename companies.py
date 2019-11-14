@@ -64,7 +64,7 @@ def parseName(name):
         new_name = 'AGIBANK'
     elif new_name.upper().startswith(('MEU PAG','MEUPAG')):
         new_name = 'MEU PAG!'
-    elif new_name.upper().startswith('DIGIO'):
+    elif new_name.upper().startswith('BANCO DIGIO'):
         new_name = 'DIGIO'
     elif new_name.upper().startswith(('PAN','BANCOPAN')):
         new_name = 'PAN'

@@ -7,7 +7,6 @@ Created on Fri Oct 25 15:18:31 2019
 
 import os
 import csv
-from collections import OrderedDict
 import credentials
 import psycopg2
 from subprocess import call
@@ -31,7 +30,7 @@ def parse_date(date):
 with open(outdir+new_file,'w', newline="\n", encoding="utf-8") as ofile: ### arquivo temporario
     writer = csv.writer(ofile, delimiter=';')
     for file in files:
-        with open(indir+file, 'r', encoding='latin-1') as ifile:
+        with open(indir+file, 'r', encoding='utf-8') as ifile:
             reader = csv.reader(ifile, delimiter=';')
             for row in reader:
                 if row[8] in ['Varejo','Bancos, Financeiras e Administradoras de Cartão','Comércio Eletrônico','Empresas de Intermediação de Serviços / Negócios','Empresas de Pagamento Eletrônico']:
@@ -39,7 +38,7 @@ with open(outdir+new_file,'w', newline="\n", encoding="utf-8") as ofile: ### arq
                     row[7] = parseName(row[7])
                     writer.writerow(row)
 
-#os.remove(outdir+file)
+        #os.remove(outdir+file)
 
 ### conecta no banco de dados
 db_conn = psycopg2.connect("dbname='{}' user='{}' host='{}' password='{}'".format(DATABASE, USER, HOST, PASSWORD))
