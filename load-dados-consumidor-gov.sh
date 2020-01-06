@@ -6,7 +6,6 @@ DIR="/home/ubuntu/scripts/load-dados-consumidor-gov"
 DUMP="/home/ubuntu/dump"
 STARTDATE=$(date +'%F %T')
 SCRIPTNAME="load-dados-consumidor-gov.sh"
-BOT="bot_message.py"
 
 horario()
 {
@@ -40,8 +39,6 @@ LoadHist()
 }
 export -f LoadHist
 
-python ${DIR}/${BOT} START DAILY
-
 ### Carrega arquivos nas tabelas staging
 
 echo -e "$(horario): Inicio do staging.\n-\n"
@@ -64,7 +61,7 @@ done
 
 echo -e "$(horario): Inicio da limpeza do staging.\n-\n"
 
-LoadHist $TABLE
+LoadHist
 
 ### Remove arquivos temporarios e escreve no log
 
@@ -74,7 +71,5 @@ ENDDATE=$(date +'%F %T')
 echo "$SCRIPTNAME;$STARTDATE;$ENDDATE" >> $LOG
 
 echo -e "$(horario):Fim da execucao.\n"
-
-python ${DIR}/${BOT} "END"
 
 exit 0

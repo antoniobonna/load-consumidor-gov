@@ -38,7 +38,7 @@ with open(outdir+new_file,'w', newline="\n", encoding="utf-8") as ofile: ### arq
                     row[7] = parseName(row[7])
                     writer.writerow(row)
 
-        #os.remove(outdir+file)
+        os.remove(outdir+file)
 
 ### conecta no banco de dados
 db_conn = psycopg2.connect("dbname='{}' user='{}' host='{}' password='{}'".format(DATABASE, USER, HOST, PASSWORD))
